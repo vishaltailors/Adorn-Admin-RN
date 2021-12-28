@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
 
-function App() {
+import AddCategory from "./components/AddCategory";
+import Header from "./components/Header";
+import AddImage from "./components/AddImage";
+import "./App.css";
+import { getCategories } from "./store/categorySlice";
+import { useDispatch } from "react-redux";
+
+const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <div className="px-5 py-5">
+        <div className="text-3xl font-bold text-slate-700">Admin Panel</div>
+      </div>
+      <div className="px-5 grid md:grid-cols-2 gap-8">
+        <AddImage />
+        <AddCategory />
+      </div>
+    </>
   );
-}
+};
 
 export default App;
