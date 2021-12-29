@@ -20,18 +20,17 @@ const AddImage = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
-    // if (!category) {
-    //   setError(true);
-    //   return;
-    // }
-    // setError(false);
-    // setLoader(true);
-    // addImage({ ...data, category }).then(() => {
-    //   setLoader(false);
-    //   reset();
-    //   setCategory();
-    // });
+    if (!category) {
+      setError(true);
+      return;
+    }
+    setError(false);
+    setLoader(true);
+    addImage({ ...data, category }).then(() => {
+      setLoader(false);
+      reset();
+      setCategory();
+    });
   };
 
   return (
